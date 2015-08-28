@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   devise_for :users
-  get 'home/index'
-
-  get 'home/index'
-
   root to: 'home#index'
 end
