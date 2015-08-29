@@ -1,8 +1,4 @@
-class Api::V1::PostsController < ApplicationController
-  before_action :doorkeeper_authorize!
-
-  respond_to :json
-
+class Api::V1::PostsController < Api::V1::BaseController
   def index
     @posts = Post.all
     respond_with @posts
