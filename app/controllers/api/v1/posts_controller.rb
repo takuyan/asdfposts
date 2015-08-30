@@ -1,8 +1,15 @@
 module Api::V1
   class PostsController < BaseController
     def index
-      @posts = Post.all.page(params[:page])
-      render json: @posts, each_serializer: PostSerializer
+      @posts = Post.all.page(params[:page]).per(100)
+      render json: @posts,
+        meta: {
+          total_count: @posts.total_count,
+          total_pates: @posts.total_pages,
+          current_page: @posts.current_page,
+          per_page: 100
+        },
+        each_serializer: PostSerializer
     end
 
     def create
